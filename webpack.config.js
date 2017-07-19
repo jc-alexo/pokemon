@@ -30,6 +30,11 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
+                test: /.jsx?$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            },
+            {
                 test: /.scss?$/,
                 use: [
                   { loader: 'style-loader'},
@@ -40,7 +45,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.scss'],
+        extensions: ['.js', '.jsx', '.scss'],
         modules: [
             'node_modules',
             path.resolve(__dirname, './node_modules')
