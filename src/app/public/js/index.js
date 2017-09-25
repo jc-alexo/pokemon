@@ -81,7 +81,11 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
 var Index = function Index() {
   _classCallCheck(this, Index);

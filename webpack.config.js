@@ -17,6 +17,7 @@ const plugins = {
 module.exports = {
     entry: {
         index: "./src/js/index.js",
+        react: "./src/js/react.js",
     },
     output: {
         path: path.resolve(__dirname, './src/app/public/js'),
