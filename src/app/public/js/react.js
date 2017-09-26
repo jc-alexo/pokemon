@@ -9780,6 +9780,73 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+// class Wrapper extends Component {
+
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             pokemon: "ice",
+//             pokedata: ""
+//         };
+
+//         this.handleClick = this.handleClick.bind(this);
+//         this.handleType = this.handleType.bind(this);
+//     }
+
+//     handleClick() {
+
+//         reqwest({
+//             url: 'https://pokeapi.co/api/v2/pokemon/charizard/'            
+//         }).then((response)=>{
+//             this.setState({
+//                 pokemon: response.name
+//             });
+//         });
+
+//         // this.setState((prevState) => {
+//         //     return {
+//         //         pokemon: !prevState.pokemon
+//         //     } 
+//         // });
+//     }
+
+//     handleType()
+//     {
+//         this.setState({ 
+//             pokedata: pokebox.value
+//         });
+//     }
+
+//     render() {
+//         const { pokemon } = this.state;
+//         const { pokedata } = this.state;
+
+//         // const titleText = altText ? "I am alternative text" : "Hello World";
+
+//         return (
+//             <div>
+//                 <Title text={pokemon} />
+//                 <Title placeholder="Dexterous" value={pokedata} />
+//                 <button onClick={this.handleClick}>Switch Ice/Fire</button>
+//                 <br/>
+//                 <br/>
+//                 <input onChange={this.handleType} type="textbox" name="pokebox" placeholder="put text here"></input>
+//             </div>
+//         );
+//     }
+
+// }
+
+
+// function Pokedex(props)
+//     {
+//         if(props.poketext != '')
+//         {
+//             return <p>The water will boil.</p>;
+//         }
+//         return <p>The water will not boil</p>;
+//     }
+
 var Wrapper = function (_Component) {
     _inherits(Wrapper, _Component);
 
@@ -9788,55 +9855,35 @@ var Wrapper = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Wrapper.__proto__ || Object.getPrototypeOf(Wrapper)).call(this, props));
 
-        _this.state = {
-            pokemon: "ice"
-        };
-
-        _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.state = { temperature: '' };
         return _this;
     }
 
     _createClass(Wrapper, [{
-        key: 'handleClick',
-        value: function handleClick() {
-            var _this2 = this;
-
-            __WEBPACK_IMPORTED_MODULE_2_reqwest___default()({
-                url: 'https://pokeapi.co/api/v2/pokemon/charizard',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": true,
-                    "Origin": "http://localhost:3000"
-                }
-            }).then(function (response) {
-                _this2.setState({
-                    pokemon: response.name
-                });
-            });
-
-            // this.setState((prevState) => {
-            //     return {
-            //         pokemon: !prevState.pokemon
-            //     } 
-            // });
+        key: 'handleChange',
+        value: function handleChange(e) {
+            this.setState({ temperature: e.target.value });
         }
     }, {
         key: 'render',
         value: function render() {
-            var pokemon = this.state.pokemon;
-
-            // const titleText = altText ? "I am alternative text" : "Hello World";
-
+            var temperature = this.state.temperature;
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
+                'fieldset',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Title__["a" /* default */], { text: pokemon }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Title__["a" /* default */], { text: 'Dexterous' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'button',
-                    { onClick: this.handleClick },
-                    'Switch Ice/Fire'
-                )
+                    'legend',
+                    null,
+                    'Enter temperature in Celsius:'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                    value: temperature,
+                    onChange: this.handleChange
+                }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Wrapper, {
+                    celsius: parseFloat(temperature)
+                })
             );
         }
     }]);
@@ -22501,7 +22548,7 @@ var Title = function Title(_ref) {
     );
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Title);
+/* unused harmony default export */ var _unused_webpack_default_export = (Title);
 
 /***/ }),
 /* 190 */
