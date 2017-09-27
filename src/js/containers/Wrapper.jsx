@@ -70,6 +70,31 @@ function Pokebox(props)
         return <p></p>;
     }
 
+function debounce(func, wait, immediate)
+{
+
+    var timeout;
+
+    return function()
+    {
+        var context = this, args = arguments;
+        var later = function()
+        {
+            timeout = null;
+
+            if(!immediate) func.apply(context, args);
+        };
+
+        var callNow = immediate && !timeout;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    }
+
+}
+
 class Wrapper extends Component {
     
         constructor(props)
@@ -79,10 +104,25 @@ class Wrapper extends Component {
             this.state = {poketext: ''};
         }
 
+        pokecheck(query)
+        {
+            
+            reqwest({
+            url: `https://pokeapi.co/api/v2/pokemon/${query}/`
+            }).then((response)=>{
+                this.setState({
+                    poketext: {id: response.id, img: response.img}
+                });
+            });
+
+        }
+
         handleChange(e)
         {
             this.setState({poketext: e.target.value});
-            
+
+            this.pokecheck(e.target.value);
+
         }
 
         render()
@@ -91,13 +131,13 @@ class Wrapper extends Component {
             return (
                 <fieldset>
                     <legend>POKEDEX!</legend>
-                <input
-                    value={poketext} 
+                <input                     
                     onChange={this.handleChange}
                 />
                 <Pokebox
-                    pokedata={poketext}
+                    pokedata={poketext}                    
                 />
+                
                 </fieldset>
             );
         }

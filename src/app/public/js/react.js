@@ -9849,6 +9849,28 @@ function Pokebox(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', null);
 }
 
+function debounce(func, wait, immediate) {
+
+    var timeout;
+
+    return function () {
+        var context = this,
+            args = arguments;
+        var later = function later() {
+            timeout = null;
+
+            if (!immediate) func.apply(context, args);
+        };
+
+        var callNow = immediate && !timeout;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 var Wrapper = function (_Component) {
     _inherits(Wrapper, _Component);
 
@@ -9863,9 +9885,24 @@ var Wrapper = function (_Component) {
     }
 
     _createClass(Wrapper, [{
+        key: 'pokecheck',
+        value: function pokecheck(query) {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_2_reqwest___default()({
+                url: 'https://pokeapi.co/api/v2/pokemon/' + query + '/'
+            }).then(function (response) {
+                _this2.setState({
+                    poketext: { id: response.id, img: response.img }
+                });
+            });
+        }
+    }, {
         key: 'handleChange',
         value: function handleChange(e) {
             this.setState({ poketext: e.target.value });
+
+            this.pokecheck(e.target.value);
         }
     }, {
         key: 'render',
@@ -9880,7 +9917,6 @@ var Wrapper = function (_Component) {
                     'POKEDEX!'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                    value: poketext,
                     onChange: this.handleChange
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Pokebox, {
