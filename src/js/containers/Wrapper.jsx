@@ -61,42 +61,42 @@ import reqwest from 'reqwest';
 // }
 
 
-// function Pokedex(props)
-//     {
-//         if(props.poketext != '')
-//         {
-//             return <p>The water will boil.</p>;
-//         }
-//         return <p>The water will not boil</p>;
-//     }
+function Pokebox(props)
+    {
+        if(props.pokedata != '')
+        {
+            return <p>{props.pokedata}</p>;
+        }
+        return <p></p>;
+    }
 
 class Wrapper extends Component {
-
     
         constructor(props)
         {
             super(props);
             this.handleChange = this.handleChange.bind(this);
-            this.state = {temperature: ''};
+            this.state = {poketext: ''};
         }
 
         handleChange(e)
         {
-            this.setState({temperature: e.target.value});
+            this.setState({poketext: e.target.value});
+            
         }
 
         render()
         {
-            const temperature = this.state.temperature;
+            const poketext = this.state.poketext;
             return (
                 <fieldset>
-                    <legend>Enter temperature in Celsius:</legend>
+                    <legend>POKEDEX!</legend>
                 <input
-                    value={temperature} 
+                    value={poketext} 
                     onChange={this.handleChange}
                 />
-                <Wrapper
-                    celsius={parseFloat(temperature)}
+                <Pokebox
+                    pokedata={poketext}
                 />
                 </fieldset>
             );

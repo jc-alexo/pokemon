@@ -9838,14 +9838,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // }
 
 
-// function Pokedex(props)
-//     {
-//         if(props.poketext != '')
-//         {
-//             return <p>The water will boil.</p>;
-//         }
-//         return <p>The water will not boil</p>;
-//     }
+function Pokebox(props) {
+    if (props.pokedata != '') {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            null,
+            props.pokedata
+        );
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', null);
+}
 
 var Wrapper = function (_Component) {
     _inherits(Wrapper, _Component);
@@ -9856,33 +9858,33 @@ var Wrapper = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Wrapper.__proto__ || Object.getPrototypeOf(Wrapper)).call(this, props));
 
         _this.handleChange = _this.handleChange.bind(_this);
-        _this.state = { temperature: '' };
+        _this.state = { poketext: '' };
         return _this;
     }
 
     _createClass(Wrapper, [{
         key: 'handleChange',
         value: function handleChange(e) {
-            this.setState({ temperature: e.target.value });
+            this.setState({ poketext: e.target.value });
         }
     }, {
         key: 'render',
         value: function render() {
-            var temperature = this.state.temperature;
+            var poketext = this.state.poketext;
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'fieldset',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'legend',
                     null,
-                    'Enter temperature in Celsius:'
+                    'POKEDEX!'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                    value: temperature,
+                    value: poketext,
                     onChange: this.handleChange
                 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Wrapper, {
-                    celsius: parseFloat(temperature)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Pokebox, {
+                    pokedata: poketext
                 })
             );
         }
